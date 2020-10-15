@@ -1,6 +1,7 @@
+import Layout from '../components/layout';
 
-let About = () => (
-    <div>
+const About = () => (
+    <Layout>
         <h1>about the nextJS world?</h1>
         <div>
             <ul>
@@ -8,7 +9,7 @@ let About = () => (
                 <li>the best of e now</li>
             </ul>
         </div>
-    </div>
+    </Layout>
 );
 
 export default About;
