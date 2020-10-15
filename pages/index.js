@@ -1,19 +1,31 @@
 import Layout from '../components/layout';
 import axios from 'axios';
+import Prices from '../components/prices';
+import { useState, useEffect } from 'react';
 
-const Index = () => (
-    <Layout>
-        <h2>hello world next!</h2>
-    </Layout>
-);
+const Index = () => {
 
-Index.getProps = async function() {
-    const res = await axios.get('https://api.coindesk.com/v1/bpi/currentprice.json');
-    try {
-        const data = res.json();
-    } catch(err) {
-        throw err;
+    const [myData, setMyData] = useState("");
+
+    const getData = async () => {
+        const res = await axios.get('https://api.coindesk.com/v1/bpi/currentprice.json');
+        try {
+            setMyData(() => res.data.bpi);
+        } catch(err) {
+            throw err;
+        }
     }
-}
+
+    useEffect(() => {
+        getData();
+    }, []);
+
+    return (
+        <Layout>
+            <p>hello world next!</p>
+            <Prices data={myData} />
+        </Layout>
+    );
+};
 
 export default Index;
